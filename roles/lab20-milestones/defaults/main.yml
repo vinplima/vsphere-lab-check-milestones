@@ -1,0 +1,8 @@
+---
+# defaults file for roles/lab20-milestones
+resource_pools:
+  - RP-LABORATORY
+  
+vms:
+  - vm-laboratory-001
+  

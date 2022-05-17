@@ -1,0 +1,18 @@
+---
+# tasks file for roles/lab06-milestones
+- name: Gather DPG info for VDS {{ vds_name }} in {{ vcenter_hostname }}
+  community.vmware.vmware_dvs_portgroup_info:
+    hostname: "{{ vcenter_hostname }}"
+    username: "{{ vcenter_username }}"
+    password: "{{ vcenter_password }}"
+    validate_certs: "{{ validate_certs }}"
+    datacenter: "{{ datacenter_name }}"
+    dvswitch: "{{ vds_name }}"
+  register: dpg_info
+  ignore_errors: true
+
+- name: Check if all DPGs were created in {{ vcenter_hostname }}
+  assert:
+    that: "item in {{ dpg_info.dvs_portgroup_info.vdsLab | map(attribute = 'portgroup_name') | list }}"
+  with_items: "{{ dpg_list }}"
+  ignore_errors: true

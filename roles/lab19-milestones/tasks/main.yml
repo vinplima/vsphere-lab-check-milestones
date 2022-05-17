@@ -1,0 +1,15 @@
+---
+# tasks file for roles/lab19-milestones
+- name: Gather resource pool info in {{ vcenter_hostname }}
+  community.vmware.vmware_resource_pool_info:
+    hostname: '{{ vcenter_hostname }}'
+    username: '{{ vcenter_username }}'
+    password: '{{ vcenter_password }}'
+    validate_certs: "{{ validate_certs }}"
+  register: rp_info
+  delegate_to: localhost
+
+- name: Check if Resource Pool {{ resource_pool_name }} were configured with {{ cpu_limit_mhz }} CPU limit in {{ vcenter_hostname }}
+  assert:
+    that: "{{ (rp_info.resource_pool_info | selectattr('name' , 'equalto', resource_pool_name) | list).0.cpu_allocation_limit }} == cpu_limit_mhz"
+  ignore_errors: true

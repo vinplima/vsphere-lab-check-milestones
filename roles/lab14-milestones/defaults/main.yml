@@ -1,0 +1,3 @@
+---
+# defaults file for roles/lab14-milestones
+vm_name: vm-database-001

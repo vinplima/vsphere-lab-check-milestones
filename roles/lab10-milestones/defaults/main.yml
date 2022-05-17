@@ -1,0 +1,6 @@
+---
+# defaults file for roles/lab10-milestones
+datastores:
+  - nfs_iso_datastore
+  - nfs_library_datastore
+  - nfs_template_datastore

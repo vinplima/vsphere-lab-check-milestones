@@ -1,0 +1,5 @@
+---
+# defaults file for roles/lab16-milestones
+vm_name: vm-database-001
+folder_name: USER_VMS
+snapshot_name: initial-state

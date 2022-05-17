@@ -1,0 +1,6 @@
+---
+# defaults file for roles/lab24-milestones
+vms: 
+  - vm-ansible-001
+  - vm-pgsql-001
+  - vm-pgsql-002

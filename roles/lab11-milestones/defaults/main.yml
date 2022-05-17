@@ -1,0 +1,6 @@
+---
+# defaults file for roles/lab11-milestones
+datastores: 
+  - iscsi_datastore_01
+  - iscsi_datastore_02
+  - iscsi_datastore_03

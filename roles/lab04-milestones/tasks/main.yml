@@ -1,0 +1,12 @@
+---
+# tasks file for roles/lab04-milestones
+- name: Check if all 5 ESXi hosts where added into {{ vcenter_hostname }}
+  community.vmware.vmware_host_facts:
+    hostname: "{{ vcenter_hostname }}"
+    username: "{{ vcenter_username }}"
+    password: "{{ vcenter_password }}"
+    validate_certs: "{{ validate_certs }}"
+    esxi_hostname: "{{ item }}"
+  delegate_to: localhost
+  ignore_errors: true
+  with_items: "{{ esxi_hosts }}"

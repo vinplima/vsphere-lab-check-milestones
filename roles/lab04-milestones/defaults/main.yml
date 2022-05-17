@@ -1,0 +1,8 @@
+---
+# defaults file for roles/lab04-milestones
+esxi_hosts:
+  - esxi01.vsphere.lab
+  - esxi02.vsphere.lab
+  - esxi03.vsphere.lab
+  - esxi04.vsphere.lab
+  - esxi05.vsphere.lab

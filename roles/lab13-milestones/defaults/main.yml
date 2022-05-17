@@ -1,0 +1,5 @@
+---
+# defaults file for roles/lab13-milestones
+vms: 
+  - template-linux-base
+  - vm-from-template-001

@@ -1,0 +1,19 @@
+---
+# tasks file for roles/lab16-milestones
+- name: Gather snapshot information about VM {{ vm_name }} in {{ vcenter_hostname }}
+  community.vmware.vmware_guest_snapshot_info:
+    hostname: "{{ vcenter_hostname }}"
+    username: "{{ vcenter_username }}"
+    password: "{{ vcenter_password }}"
+    validate_certs: "{{ validate_certs }}"
+    datacenter: "{{ datacenter_name }}"
+    folder: "/{{ datacenter_name }}/vm/{{ folder_name }}"
+    name: "{{ vm_name }}"
+  delegate_to: localhost
+  register: snapshot_info
+  ignore_errors: true
+
+- name: Check if snapshot {{ snapshot_name }} exists for VM {{ vm_name }} in {{ vcenter_hostname }}
+  assert:
+    that: snapshot_info.guest_snapshots.snapshots.0.name == snapshot_name
+  ignore_errors: true

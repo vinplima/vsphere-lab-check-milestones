@@ -1,0 +1,34 @@
+- name: Check each lab milestones
+  hosts: vcenter
+  connection: local
+  gather_facts: true
+
+  collections:
+    - community.vmware
+
+  roles:
+
+    - roles/lab01-milestones
+    - roles/lab02-milestones
+    - roles/lab03-milestones
+    - roles/lab04-milestones
+    - roles/lab05-milestones
+    - roles/lab06-milestones
+    - roles/lab07-milestones
+    - roles/lab08-milestones
+    - roles/lab09-milestones
+    - roles/lab10-milestones
+    - roles/lab11-milestones
+    - roles/lab12-milestones
+    - roles/lab13-milestones
+    - roles/lab14-milestones
+    - roles/lab15-milestones
+    - roles/lab16-milestones
+    - roles/lab17-milestones
+    - roles/lab18-milestones
+    - roles/lab19-milestones
+    - roles/lab20-milestones
+    - roles/lab21-milestones
+    - roles/lab22-milestones
+    - roles/lab23-milestones
+    - roles/lab24-milestones

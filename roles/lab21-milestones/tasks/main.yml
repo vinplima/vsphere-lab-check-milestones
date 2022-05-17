@@ -1,0 +1,17 @@
+---
+# tasks file for roles/lab21-milestones
+- name: Gather cluster {{ cluster_name }} in {{ vcenter_hostname }}
+  community.vmware.vmware_cluster_info:
+    hostname: '{{ vcenter_hostname }}'
+    username: '{{ vcenter_username }}'
+    password: '{{ vcenter_password }}'
+    validate_certs: "{{ validate_certs }}"
+    cluster_name: "{{ cluster_name }}"
+  delegate_to: localhost
+  ignore_errors: true
+  register: cluster_info
+
+- name: Check if HA is activated for {{ cluster_name }} in {{ vcenter_hostname }}
+  assert:
+    that: "{{ cluster_info.clusters[cluster_name].enable_ha | bool }} is true"
+  ignore_errors: true

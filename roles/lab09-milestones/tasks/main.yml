@@ -1,0 +1,17 @@
+---
+# tasks file for roles/lab09-milestones
+- name: Gather info about vmhbas of host {{ esxi_hostname }} in {{ vcenter_hostname }}
+  community.vmware.vmware_host_vmhba_info:
+    hostname: '{{ vcenter_hostname }}'
+    username: '{{ vcenter_username }}'
+    password: '{{ vcenter_password }}'
+    validate_certs: "{{ validate_certs }}"
+    esxi_hostname: '{{ esxi_hostname }}'
+  delegate_to: localhost
+  register: host_vmhbas
+  ignore_errors: true
+
+- name: Check if host {{ esxi_hostname }} has interface {{ interface_name }} in {{ vcenter_hostname }}
+  assert:
+    that: "interface_name in {{ host_vmhbas.hosts_vmhbas_info['esxi01.vsphere.lab'].vmhba_details | map(attribute = 'device') | list }}"
+  ignore_errors: true

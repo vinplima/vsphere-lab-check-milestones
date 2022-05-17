@@ -1,0 +1,17 @@
+---
+# tasks file for roles/lab10-milestones
+- name: Gather datastores configured in {{ vcenter_hostname }}
+  community.vmware.vmware_datastore_info:
+    hostname: '{{ vcenter_hostname }}'
+    username: '{{ vcenter_username }}'
+    password: '{{ vcenter_password }}'
+    validate_certs: "{{ validate_certs }}"
+    datacenter_name: '{{ datacenter_name }}'
+  delegate_to: localhost
+  register: datastore_info
+
+- name: Check if NFS datastores were configured in {{ vcenter_hostname }}
+  assert:
+    that: "item in {{ datastore_info.datastores | map(attribute = 'name') | list }}"
+  with_items: "{{ datastores }}"
+  ignore_errors: true

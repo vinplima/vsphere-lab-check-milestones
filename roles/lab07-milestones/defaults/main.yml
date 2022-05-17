@@ -1,0 +1,11 @@
+---
+# defaults file for roles/lab07-milestones
+esxi_hostname: esxi01.vsphere.lab
+
+ip_addresses:
+  - 172.16.100.101
+  - 172.16.201.101
+  - 172.16.202.101
+  - 172.16.203.101
+  - 172.16.203.201
+  - 172.16.204.101

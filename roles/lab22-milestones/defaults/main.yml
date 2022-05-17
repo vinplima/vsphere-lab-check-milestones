@@ -1,0 +1,4 @@
+---
+# defaults file for roles/lab22-milestones
+vm_name: vm-ft-001
+folder_name: USER_VMS

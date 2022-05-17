@@ -1,0 +1,36 @@
+---
+# tasks file for roles/lab05-milestones
+- name: Gather folders data in {{ vcenter_hostname }}
+  community.vmware.vmware_folder_info:
+    hostname: '{{ vcenter_hostname }}'
+    username: '{{ vcenter_username }}'
+    password: '{{ vcenter_password }}'
+    validate_certs: "{{ validate_certs }}"
+    datacenter: "{{ datacenter_name }}"
+  register: folders
+  delegate_to: localhost
+  ignore_errors: true
+
+- name: Validate VM folders exist in {{ vcenter_hostname }}
+  assert:
+    that: "item in {{ folders.folder_info.vmFolders.subfolders.keys() | list }}"
+  with_items: "{{ vm_folders }}"
+  ignore_errors: true
+
+- name: Validate Network folders exist in {{ vcenter_hostname }}
+  assert:
+    that: "item in {{ folders.folder_info.networkFolders.subfolders.keys() | list }}"
+  with_items: "{{ network_folders }}"
+  ignore_errors: true
+
+- name: Validate Host folders exist in {{ vcenter_hostname }}
+  assert:
+    that: "item in {{ folders.folder_info.hostFolders.subfolders.keys() | list }}"
+  with_items: "{{ host_folders }}"
+  ignore_errors: true
+
+- name: Validate Storage folders exist in {{ vcenter_hostname }}
+  assert:
+    that: "item in {{ folders.folder_info.datastoreFolders.subfolders.keys() | list }}"
+  with_items: "{{ storage_folders }}"
+  ignore_errors: true

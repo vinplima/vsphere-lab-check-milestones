@@ -1,0 +1,28 @@
+---
+# tasks file for roles/lab18-milestones
+- name: Check if VMs exists in {{ vcenter_hostname }}
+  community.vmware.vmware_guest_info:
+    hostname: "{{ vcenter_hostname }}"
+    username: "{{ vcenter_username }}"
+    password: "{{ vcenter_password }}"
+    validate_certs: "{{ validate_certs }}"
+    datacenter: "{{ datacenter_name }}"
+    name: "{{ item }}"
+  delegate_to: localhost
+  with_items: "{{ vms }}"
+  ignore_errors: true
+
+- name: Gather resource pool info in {{ vcenter_hostname }}
+  community.vmware.vmware_resource_pool_info:
+    hostname: '{{ vcenter_hostname }}'
+    username: '{{ vcenter_username }}'
+    password: '{{ vcenter_password }}'
+    validate_certs: "{{ validate_certs }}"
+  register: rp_info
+  delegate_to: localhost
+
+- name: Check if Resource Pools were configured in {{ vcenter_hostname }}
+  assert:
+    that: "item in {{ rp_info.resource_pool_info | map(attribute = 'name') | list }}"
+  with_items: "{{ resource_pools }}"
+  ignore_errors: true

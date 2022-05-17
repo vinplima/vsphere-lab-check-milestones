@@ -1,0 +1,4 @@
+---
+# defaults file for roles/lab12-milestones
+datastore_cluster_name: DSC_LAB
+datastore_count: 3

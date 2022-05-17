@@ -1,0 +1,3 @@
+---
+# defaults file for roles/lab02-milestones
+vm_name: vm-wizard-001

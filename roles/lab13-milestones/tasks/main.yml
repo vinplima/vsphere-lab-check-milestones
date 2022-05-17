@@ -1,0 +1,13 @@
+---
+# tasks file for roles/lab13-milestones
+- name: Check if VMs exists in {{ vcenter_hostname }}
+  community.vmware.vmware_guest_info:
+    hostname: "{{ vcenter_hostname }}"
+    username: "{{ vcenter_username }}"
+    password: "{{ vcenter_password }}"
+    validate_certs: "{{ validate_certs }}"
+    datacenter: "{{ datacenter_name }}"
+    name: "{{ item }}"
+  delegate_to: localhost
+  with_items: "{{ vms }}"
+  ignore_errors: true

@@ -1,0 +1,19 @@
+---
+# tasks file for roles/lab22-milestones
+- name: Check if {{ vm_name }} exists in {{ vcenter_hostname }}
+  community.vmware.vmware_guest_info:
+    hostname: "{{ vcenter_hostname }}"
+    username: "{{ vcenter_username }}"
+    password: "{{ vcenter_password }}"
+    validate_certs: "{{ validate_certs }}"
+    datacenter: "{{ datacenter_name }}"
+    name: "{{ vm_name }}"
+    folder: "/{{ datacenter_name }}/vm/{{ folder_name }}"
+  delegate_to: localhost
+  ignore_errors: true
+  register: vm_info
+
+- name: Check if FT is activated for {{ vm_name }} in {{ vcenter_hostname }}
+  assert:
+    that: "{{ vm_info.instance.advanced_settings['ftcpt.newMetadataDir'] | bool }} is true"
+  ignore_errors: true

@@ -1,0 +1,16 @@
+---
+# defaults file for roles/lab05-milestones
+storage_folders:
+  - LOCAL_DATASTORES
+  - STANDALONE_DATASTORES
+
+network_folders:
+  - LOCAL_PORTGROUPS
+
+vm_folders:
+  - USER_VMS
+  - INFRA_VMS
+  - TEMPLATES
+
+host_folders:
+  - STANDALONE_HOSTS

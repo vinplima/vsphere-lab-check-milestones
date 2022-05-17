@@ -1,0 +1,13 @@
+---
+# defaults file for roles/lab06-milestones
+vds_name: vdsLab
+
+dpg_list:
+  - dpgApp
+  - dpgDb
+  - dpgFT
+  - dpgISCSI01
+  - dpgISCSI02
+  - dpgManagement
+  - dpgNFS
+  - dpgVMotion

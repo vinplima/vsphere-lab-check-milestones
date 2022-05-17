@@ -1,0 +1,5 @@
+---
+# defaults file for roles/lab09-milestones
+esxi_hostname: esxi01.vsphere.lab
+
+interface_name: vmhba65

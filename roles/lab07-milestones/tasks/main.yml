@@ -1,0 +1,18 @@
+---
+# tasks file for roles/lab07-milestones
+- name: Gather VMKernel info about host {{ esxi_hostname }} in {{ vcenter_hostname }}
+  community.vmware.vmware_vmkernel_info:
+    hostname: '{{ vcenter_hostname }}'
+    username: '{{ vcenter_username }}'
+    password: '{{ vcenter_password }}'
+    validate_certs: "{{ validate_certs }}"
+    esxi_hostname: '{{ esxi_hostname }}'
+  delegate_to: localhost
+  register: host_vmks
+  ignore_errors: true
+
+- name: Check if host {{ esxi_hostname }} have necessary ip addresses in {{ vcenter_hostname }}
+  assert:
+    that: "item in {{ host_vmks.host_vmk_info['esxi01.vsphere.lab'] | map(attribute = 'ipv4_address') | list }}"
+  with_items: "{{ ip_addresses }}"
+  ignore_errors: true

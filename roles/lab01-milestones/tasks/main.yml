@@ -1,0 +1,13 @@
+---
+# tasks file for roles/lab01-milestones
+- name: Check if {{ datastore_name }} exists in {{ vcenter_hostname }}
+  community.vmware.vmware_datastore_info:
+    hostname: "{{ vcenter_hostname }}"
+    username: "{{ vcenter_username }}"
+    password: "{{ vcenter_password }}"
+    validate_certs: "{{ validate_certs }}"
+    datacenter_name: "{{ datacenter_name }}"
+    name: "{{ datastore_name }}"
+  delegate_to: localhost
+  ignore_errors: true
+  

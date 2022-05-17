@@ -1,0 +1,9 @@
+---
+# defaults file for roles/lab23-milestones
+vms:
+  - vm-drs-001
+  - vm-drs-002
+  - vm-drs-003
+  - vm-drs-004
+  - vm-drs-005
+  - template-linux-load

@@ -1,0 +1,11 @@
+---
+# defaults file for roles/lab18-milestones
+resource_pools:
+  - RP-ADMISSION-CONTROL
+  - RP-CPU-CONTENTION
+  - RP-INFRA
+
+vms:
+  - vm-cpu-contention-001
+  - vm-admission-control-001
+  - vm-admission-control-002

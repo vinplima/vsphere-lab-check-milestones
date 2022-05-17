@@ -1,0 +1,6 @@
+---
+# defaults file for roles/lab17-milestones
+vms:
+  - library-template-linux-base (2)
+  - library-template-linux-base (3)
+  - vm-new-template-001

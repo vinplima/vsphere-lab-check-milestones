@@ -1,0 +1,4 @@
+---
+# defaults file for roles/lab19-milestones
+cpu_limit_mhz: 10000
+resource_pool_name: RP-CPU-CONTENTION

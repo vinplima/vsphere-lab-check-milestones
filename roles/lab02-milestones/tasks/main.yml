@@ -1,0 +1,12 @@
+---
+# tasks file for roles/lab02-milestones
+- name: Check if {{ vm_name }} exists in {{ vcenter_hostname }}
+  community.vmware.vmware_guest_info:
+    hostname: "{{ vcenter_hostname }}"
+    username: "{{ vcenter_username }}"
+    password: "{{ vcenter_password }}"
+    validate_certs: "{{ validate_certs }}"
+    datacenter: "{{ datacenter_name }}"
+    name: "{{ vm_name }}"
+  delegate_to: localhost
+  ignore_errors: true
